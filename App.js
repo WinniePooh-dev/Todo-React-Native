@@ -14,6 +14,10 @@ export default function App() {
         }
     }
 
+    const removeTodo = id => {
+        setTodos(prev => prev.filter(todo => todo.id !== id))
+    }
+
     return (
         <View style={styles.container}>
             <Header title='Todo'/>
@@ -21,7 +25,8 @@ export default function App() {
                 <Bar onSubmit={addTodo}/>
             </View>
             <ScrollView style={styles.scroll}>
-                <Todos todos={todos} />
+                <Todos todos={todos}
+                       onRemove={removeTodo} />
             </ScrollView>
         </View>
     );

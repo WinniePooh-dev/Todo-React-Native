@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-export const Todos = ({ todos }) => {
+export const Todos = ({ todos, onRemove }) => {
     return (
         <View>
-            {todos.map(e => <TouchableOpacity activeOpacity={.5}>
+            {todos.map(e => <TouchableOpacity activeOpacity={.5}
+                                              onLongPress={() => onRemove(e.id)}>
                 <View key={e.id} style={styles.todo}><Text style={styles.todo_title}>{e.title}</Text>
                 </View></TouchableOpacity>)}
         </View>

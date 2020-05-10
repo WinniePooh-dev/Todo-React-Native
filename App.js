@@ -10,12 +10,20 @@ export default function App() {
 
     const addTodo = title => {
         if (title) {
-            setTodos(prev => [{id: Date.now().toString(), title}, ...prev])
+            setTodos(prev => [{id: Date.now().toString(), done: false, important: false, title}, ...prev])
         }
     }
 
     const removeTodo = id => {
         setTodos(prev => prev.filter(todo => todo.id !== id))
+    }
+
+    const handleTodoDone = id => {
+        setTodos(prev => prev.map(todo => todo.id === id ? {...todo, done: true} : todo))
+    }
+
+    const handleTodoImportant = id => {
+        setTodos(prev => prev.map(todo => todo.id === id ? {...todo, important: !todo.important} : todo))
     }
 
     return (
@@ -26,7 +34,9 @@ export default function App() {
             </View>
             <ScrollView style={styles.scroll}>
                 <Todos todos={todos}
-                       onRemove={removeTodo} />
+                       onRemove={removeTodo}
+                       handleTodoDone={handleTodoDone}
+                       handleTodoImportant={handleTodoImportant}/>
             </ScrollView>
         </View>
     );

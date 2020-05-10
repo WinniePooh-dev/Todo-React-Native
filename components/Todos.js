@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export const Todos = ({ todos, onRemove, handleTodoDone, handleTodoImportant }) => {
 
-    const { todo_title, todo_title_done, todo_title_important} = styles;
+    const { todo_title, todo_title_done, todo_title_important } = styles;
 
     return (
         <View>

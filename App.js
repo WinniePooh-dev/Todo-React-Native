@@ -24,9 +24,9 @@ export default function App() {
         const DOUBLE_PRESS_DELAY = 300;
 
         lastTap && now - lastTap < DOUBLE_PRESS_DELAY ?
-         setTodos(prev => prev.map(todo => todo.id === id ?
-             {...todo, important: !todo.important} : todo)) : (setLastTap(now),
-              setTodos(prev => prev.map(todo => todo.id === id ? {...todo, done: true} : todo)
+            setTodos(prev => prev.map(todo => todo.id === id ?
+                {...todo, done: true} : todo)) : (setLastTap(now),
+                    setTodos(prev => prev.map(todo => todo.id === id ? {...todo, important: !todo.important} : todo)
             )
         )
     }

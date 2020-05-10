@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export const Todos = ({ todos }) => {
     return (
         <View>
-            {todos.map(e => <View key={e.id} style={styles.todo}><Text style={styles.todo_title}>{e.title}</Text></View>)}
+            {todos.map(e => <TouchableOpacity activeOpacity={.5}>
+                <View key={e.id} style={styles.todo}><Text style={styles.todo_title}>{e.title}</Text>
+                </View></TouchableOpacity>)}
         </View>
     )
 }

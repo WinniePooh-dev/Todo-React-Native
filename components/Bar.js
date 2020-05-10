@@ -19,11 +19,11 @@ export default ({ onSubmit }) => {
                            value={value}
                            onChangeText={setValue}/>
             </View>
-            <TouchableOpacity style={styles.btn}>
+            <View style={styles.btn}>
                 <Button title='+'
                         color='green'
                         onPress={handlePres}/>
-            </TouchableOpacity>
+            </View>
         </View>
     )
 };

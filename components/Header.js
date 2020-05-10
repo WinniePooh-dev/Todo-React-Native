@@ -19,5 +19,6 @@ const styles = StyleSheet.create({
     header_title: {
         color: 'ivory',
         fontSize: 20,
+        marginBottom: 5
     }
 })

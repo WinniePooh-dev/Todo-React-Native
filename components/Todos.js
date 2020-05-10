@@ -25,13 +25,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
         borderWidth: 1,
         borderStyle: 'dashed',
-        flexDirection: 'row',
-        alignItems: 'center',
+        // flexDirection: 'row',
+        // alignItems: 'center',
         borderRadius: 5,
         marginBottom: 3,
     },
     todo_title: {
         color: '#377a8d',
+        textAlign: 'justify'
     },
     todo_title_done: {
         textDecorationLine: 'line-through',

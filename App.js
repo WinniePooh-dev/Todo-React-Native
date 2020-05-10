@@ -7,6 +7,7 @@ import { Header } from './components/Header';
 export default function App() {
 
     const [todos, setTodos] = useState([])
+    const [lastTap, setLastTap] = useState(null)
 
     const addTodo = title => {
         if (title) {
@@ -18,12 +19,16 @@ export default function App() {
         setTodos(prev => prev.filter(todo => todo.id !== id))
     }
 
-    const handleTodoDone = id => {
-        setTodos(prev => prev.map(todo => todo.id === id ? {...todo, done: true} : todo))
-    }
+    const updateTodo = id => {
+        const now = Date.now();
+        const DOUBLE_PRESS_DELAY = 300;
 
-    const handleTodoImportant = id => {
-        setTodos(prev => prev.map(todo => todo.id === id ? {...todo, important: !todo.important} : todo))
+        lastTap && now - lastTap < DOUBLE_PRESS_DELAY ?
+         setTodos(prev => prev.map(todo => todo.id === id ?
+             {...todo, important: !todo.important} : todo)) : (setLastTap(now),
+              setTodos(prev => prev.map(todo => todo.id === id ? {...todo, done: true} : todo)
+            )
+        )
     }
 
     return (
@@ -35,8 +40,7 @@ export default function App() {
             <ScrollView style={styles.scroll}>
                 <Todos todos={todos}
                        onRemove={removeTodo}
-                       handleTodoDone={handleTodoDone}
-                       handleTodoImportant={handleTodoImportant}/>
+                       onUpdate={updateTodo}/>
             </ScrollView>
         </View>
     );

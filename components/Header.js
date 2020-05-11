@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import { CustomText } from './ui/CustomText';
 
 export const Header = ({ title }) => {
     return (
         <View style={styles.header}>
-            <Text style={styles.header_title}>{title}</Text>
+            <CustomText style={styles.header_title}>{title}</CustomText>
         </View>
     )
 }
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
     },
     header_title: {
         color: 'ivory',
-        fontSize: 20,
-        marginBottom: 5
+        fontSize: 30,
+        marginBottom: -5
     }
 })

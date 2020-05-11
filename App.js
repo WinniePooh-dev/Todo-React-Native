@@ -1,13 +1,30 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
+
 import { Todos } from './components/Todos';
 import Bar from './components/Bar';
 import { Header } from './components/Header';
 
+async function loadApp() {
+    await Font.loadAsync({
+        'vinchand': require('./assets/fonts/VINCHAND.ttf'),
+        'coca-cola': require('./assets/fonts/LOKICOLA.ttf')
+    })
+}
+
 export default function App() {
 
-    const [todos, setTodos] = useState([])
-    const [lastTap, setLastTap] = useState(null)
+    const [app_loaded, setAppLoaded] = useState(false);
+    const [todos, setTodos] = useState([]);
+    const [lastTap, setLastTap] = useState(null);
+
+    if (!app_loaded) {
+        return <AppLoading startAsync={loadApp}
+                           onError={err => console.log(err)}
+                           onFinish={() => setAppLoaded(true)}/>
+    }
 
     const addTodo = title => {
         if (title) {
@@ -33,7 +50,7 @@ export default function App() {
 
     return (
         <View style={styles.container}>
-            <Header title='Todo'/>
+            <Header title='Todo App'/>
             <View style={styles.block}>
                 <Bar onSubmit={addTodo}/>
             </View>

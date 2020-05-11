@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, Alert } from 'react-native';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
@@ -33,7 +33,15 @@ export default function App() {
     }
 
     const removeTodo = id => {
-        setTodos(prev => prev.filter(todo => todo.id !== id))
+        Alert.alert(
+            null,
+            'Пожалуйста, выберите действие!',
+            [
+                {text: 'Отменить', style: 'cancel'},
+                {text: 'Удалить', onPress: () => setTodos(prev => prev.filter(todo => todo.id !== id))}
+            ],
+            {cancelable: false}
+        )
     }
 
     const updateTodo = id => {

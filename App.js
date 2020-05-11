@@ -6,6 +6,7 @@ import { AppLoading } from 'expo';
 import { Todos } from './components/Todos';
 import Bar from './components/Bar';
 import { Header } from './components/Header';
+import { Edit } from './components/Edit';
 
 async function loadApp() {
     await Font.loadAsync({
@@ -19,6 +20,8 @@ export default function App() {
     const [app_loaded, setAppLoaded] = useState(false);
     const [todos, setTodos] = useState([]);
     const [lastTap, setLastTap] = useState(null);
+    const [edit, setEdit] = useState(false);
+    const [selected, setSelected] = useState('');
 
     if (!app_loaded) {
         return <AppLoading startAsync={loadApp}
@@ -33,11 +36,15 @@ export default function App() {
     }
 
     const removeTodo = id => {
+        
+        const todo = todos.find(todo => todo.id === id);
+        setSelected(todo);
+
         Alert.alert(
             null,
             'Пожалуйста, выберите действие!',
             [
-                {text: 'Отменить', style: 'cancel'},
+                {text: !todo.done ? 'Редактировать' : 'Отмена', onPress: !todo.done ? () => setEdit(true) : null},
                 {text: 'Удалить', onPress: () => setTodos(prev => prev.filter(todo => todo.id !== id))}
             ],
             {cancelable: false}
@@ -56,6 +63,11 @@ export default function App() {
         )
     }
 
+    const handleSave = (id, title) => {
+        setTodos(prev => prev.map(todo => todo.id === id ? { id, title } : todo))
+        setEdit(false)
+    }
+
     return (
         <View style={styles.container}>
             <Header title='Todo App'/>
@@ -67,6 +79,10 @@ export default function App() {
                        onRemove={removeTodo}
                        onUpdate={updateTodo}/>
             </ScrollView>
+            <Edit visible={edit}
+                  {...selected}
+                  onCancel={() => setEdit(false)}
+                  handleSave={handleSave}/>
         </View>
     );
 }

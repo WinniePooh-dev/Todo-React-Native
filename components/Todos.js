@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
-import { CocaColaText } from './ui/CocaColaText';
 
 export const Todos = ({ todos, onRemove, onUpdate }) => {
 
@@ -14,8 +13,10 @@ export const Todos = ({ todos, onRemove, onUpdate }) => {
                                               onLongPress={() => onRemove(e.id)}
                                               onPress={onUpdate.bind(null, e.id)}>
                                 <View key={e.id} style={styles.todo}>
-                                    <Text style={e.done ? {...todo_title, ...todo_title_done} : e.important ?
-                                                          {...todo_title, ...todo_title_important} : todo_title}>{e.title}</Text>
+                                    <Text style={e.done ?
+                                        {...todo_title, ...todo_title_done} : e.important ?
+                                        {...todo_title, ...todo_title_important} : todo_title}>{e.title}
+                                    </Text>
                                 </View>
                             </TouchableOpacity>
                     </TouchableWithoutFeedback>
@@ -28,10 +29,8 @@ export const Todos = ({ todos, onRemove, onUpdate }) => {
 const styles = StyleSheet.create({
     todo: {
         padding: 10,
-        borderColor: '#292929',
-        backgroundColor: '#eee',
+        borderColor: '#eee',
         borderWidth: 1,
-        borderStyle: 'dashed',
         // flexDirection: 'row',
         // alignItems: 'center',
         borderRadius: 5,

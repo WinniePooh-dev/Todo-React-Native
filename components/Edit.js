@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, View, TextInput, Button, StyleSheet } from 'react-native';
 
-export const Edit = ({ visible, onCancel, id, title, handleSave }) => {
+export const Edit = ({ visible, handleCancel, id, title, handleSave }) => {
 
     const [value, setValue] = useState('');
     const [disabled, setDisabled] = useState(false)
 
     useEffect(() => {
+        title = title ? title : ''
         setValue(title)
     }, [title])
 
@@ -19,11 +20,15 @@ export const Edit = ({ visible, onCancel, id, title, handleSave }) => {
     const onSave = () => {
         if (value.trim().length) {
             handleSave(id, value)
-            setValue(title)
         }
         else {
             setDisabled(true)
         }
+    }
+
+    const onCancel = () => {
+        handleCancel()
+        setValue(title)
     }
 
     return (

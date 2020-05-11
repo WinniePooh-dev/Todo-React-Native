@@ -81,7 +81,7 @@ export default function App() {
             </ScrollView>
             <Edit visible={edit}
                   {...selected}
-                  onCancel={() => setEdit(false)}
+                  handleCancel={() => setEdit(false)}
                   handleSave={handleSave}/>
         </View>
     );

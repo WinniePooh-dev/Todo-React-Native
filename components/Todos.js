@@ -14,8 +14,8 @@ export const Todos = ({ todos, onRemove, onUpdate }) => {
                                               onLongPress={() => onRemove(e.id)}
                                               onPress={onUpdate.bind(null, e.id)}>
                                 <View key={e.id} style={styles.todo}>
-                                    <CocaColaText style={e.done ? {...todo_title, ...todo_title_done} : e.important ?
-                                                          {...todo_title, ...todo_title_important} : todo_title}>{e.title}</CocaColaText>
+                                    <Text style={e.done ? {...todo_title, ...todo_title_done} : e.important ?
+                                                          {...todo_title, ...todo_title_important} : todo_title}>{e.title}</Text>
                                 </View>
                             </TouchableOpacity>
                     </TouchableWithoutFeedback>

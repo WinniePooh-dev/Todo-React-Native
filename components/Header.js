@@ -7,7 +7,7 @@ export const Header = ({ title }) => {
         <View style={styles.header}>
             <CustomText style={styles.header_title}>
                 <Text style={styles.dino}>&#42;</Text>
-                    {title}
+                    {`${'\t'.repeat(10)}${title}${'\t'.repeat(10)}`}
                 <Text style={styles.dino}>&#43;</Text>
             </CustomText>
         </View>

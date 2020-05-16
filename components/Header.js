@@ -5,7 +5,11 @@ import { CustomText } from './ui/CustomText';
 export const Header = ({ title }) => {
     return (
         <View style={styles.header}>
-            <CustomText style={styles.header_title}>{title}</CustomText>
+            <CustomText style={styles.header_title}>
+                <Text style={styles.dino}>&#42;</Text>
+                    {title}
+                <Text style={styles.dino}>&#43;</Text>
+            </CustomText>
         </View>
     )
 }
@@ -21,5 +25,9 @@ const styles = StyleSheet.create({
         color: 'ivory',
         fontSize: 30,
         marginBottom: -5
+    },
+    dino: {
+        fontSize: 50,
+        fontFamily: 'Jurassic Park'
     }
 })

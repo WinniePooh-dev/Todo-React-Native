@@ -11,7 +11,8 @@ import { Edit } from './components/Edit';
 async function loadApp() {
     await Font.loadAsync({
         'vinchand': require('./assets/fonts/VINCHAND.ttf'),
-        'coca-cola': require('./assets/fonts/LOKICOLA.ttf')
+        'coca-cola': require('./assets/fonts/LOKICOLA.ttf'),
+        'Jurassic Park': require('./assets/fonts/JurassicPark.ttf')
     })
 }
 
